@@ -1,10 +1,10 @@
-import 'semantic-ui-css/semantic.min.css'
+import "semantic-ui-css/semantic.min.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./routes/login";
 import Register from "./routes/register";
 import Home from "./routes/home";
@@ -12,16 +12,24 @@ import Home from "./routes/home";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-          <Route path="home" element={<Home />} />
-          <Route path="*" element={<strong>There's nothing here!</strong>} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+  <BrowserRouter>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <>
+            <App />
+            <Navigate to="/login" />
+          </>
+        }
+      >
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+        <Route path="home" element={<Home />} />
+        <Route path="*" element={<strong>There's nothing here!</strong>} />
+      </Route>
+    </Routes>
+  </BrowserRouter>
   // </React.StrictMode>
 );
 
